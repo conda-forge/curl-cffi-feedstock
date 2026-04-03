@@ -1,5 +1,5 @@
 {% set name = "curl-cffi" %}
-{% set version = "0.14.0" %}
+{% set version = "0.15.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/curl_cffi-{{ version }}.tar.gz
-  sha256: 5ffbc82e59f05008ec08ea432f0e535418823cda44178ee518906a54f27a5f0f
+  sha256: ea0c67652bf6893d34ee0f82c944f37e488f6147e9421bef1771cc6545b02ded
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -25,8 +25,9 @@ requirements:
     - cffi >=1.12.0
     - pip
   run:
+    - rich
     - python
-    - cffi >=1.12.0
+    - cffi >=2.0.0
     - certifi >=2024.2.2
 
 test:
