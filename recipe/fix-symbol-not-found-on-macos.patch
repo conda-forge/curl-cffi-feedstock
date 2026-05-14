@@ -1,0 +1,15 @@
+diff --git a/scripts/build.py b/scripts/build.py
+index 385840a..e8fda77 100644
+--- a/scripts/build.py
++++ b/scripts/build.py
+@@ -156,6 +156,10 @@ if is_static:
+         extra_link_args = [
+             f"-Wl,-force_load,{static_libs[0]}",
+             "-lc++",
++            "-framework",
++            "CoreFoundation",
++            "-framework",
++            "SystemConfiguration",
+         ]
+     elif system in ("Linux", "Android"):
+         cxx_lib = "-lc++" if is_android else "-lstdc++"
