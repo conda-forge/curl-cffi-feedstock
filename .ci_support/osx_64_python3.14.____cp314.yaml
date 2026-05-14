@@ -24,3 +24,10 @@ python:
 - 3.14.* *_cp314
 target_platform:
 - osx-64
+<<<<<<< Updated upstream
+=======
+
+CONDA_BUILD_SYSROOT:
+- /Users/monson/Projects/conda-forge/curl-cffi-feedstock/SDKs/MacOSX11.0.sdk
+
+>>>>>>> Stashed changes

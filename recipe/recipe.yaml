@@ -11,6 +11,8 @@ package:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/curl_cffi-${{ version }}.tar.gz
   sha256: ea0c67652bf6893d34ee0f82c944f37e488f6147e9421bef1771cc6545b02ded
+  patches:
+    - fix-symbol-not-found-on-macos.patch
 
 build:
   number: 1
