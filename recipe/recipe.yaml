@@ -15,8 +15,7 @@ source:
     - fix-symbol-not-found-on-macos.patch
 
 build:
-  number: 1
-  skip: win
+  number: 2
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
