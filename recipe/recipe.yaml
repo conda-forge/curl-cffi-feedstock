@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: curl-cffi
-  version: "0.15.0"
+  version: 0.16.0
 
 package:
   name: ${{ name|lower }}
@@ -10,12 +10,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/curl_cffi-${{ version }}.tar.gz
-  sha256: ea0c67652bf6893d34ee0f82c944f37e488f6147e9421bef1771cc6545b02ded
+  sha256: b00b423da8028eb6221e3b63bcd63d681150c07cee8b16000d1f7ea292731895
   patches:
     - fix-symbol-not-found-on-macos.patch
 
 build:
-  number: 3
+  number: 0
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
@@ -29,11 +29,9 @@ requirements:
     - cffi >=1.12.0
     - pip
   run:
-    - rich
     - python
     - cffi >=2.0.0
     - certifi >=2024.2.2
-
 tests:
   - python:
       imports:
