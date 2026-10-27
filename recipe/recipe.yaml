@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: curl-cffi
-  version: "0.15.0"
+  version: 0.17.0
 
 package:
   name: ${{ name|lower }}
@@ -10,29 +10,37 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/curl_cffi-${{ version }}.tar.gz
-  sha256: ea0c67652bf6893d34ee0f82c944f37e488f6147e9421bef1771cc6545b02ded
+  sha256: 31ee8500d06d6502ce1ec0b7ded1c5aa8e8f3401bbe37ccd78d6153d859d8f3c
   patches:
-    - fix-symbol-not-found-on-macos.patch
+    - if: osx
+      then:
+        - fix-symbol-not-found-on-macos.patch
 
 build:
-  number: 4
+  number: 0
+  skip:
+    # XXX: wait for someone to fix it on win
+    - win
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
 
 requirements:
   build:
     - ${{ compiler('cxx') }}
     - ${{ stdlib('c') }}
+    - if: osx
+      then:
+        - pkg-config
   host:
     - python
     - wheel
     - setuptools
-    - cffi >=1.12.0
     - pip
+    - cffi >=2.1.1
   run:
-    - rich
     - python
-    - cffi >=2.0.0
-    - certifi >=2024.2.2
+    - cffi >=2.1.1
+    - certifi >=2026.10.19
 
 tests:
   - python:
@@ -49,3 +57,4 @@ about:
 extra:
   recipe-maintainers:
     - jan-janssen
+    - holymonson
