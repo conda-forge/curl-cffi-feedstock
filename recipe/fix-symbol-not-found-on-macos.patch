@@ -2,14 +2,15 @@ diff --git a/scripts/build.py b/scripts/build.py
 index 385840a..e8fda77 100644
 --- a/scripts/build.py
 +++ b/scripts/build.py
-@@ -156,6 +156,10 @@ if is_static:
+@@ -230,7 +230,11 @@ if is_static:
+     if system == "Darwin":
          extra_link_args = [
              f"-Wl,-force_load,{static_libs[0]}",
-             "-lc++",
 +            "-framework",
 +            "CoreFoundation",
 +            "-framework",
 +            "SystemConfiguration",
          ]
-     elif system in ("Linux", "Android"):
-         cxx_lib = "-lc++" if is_android else "-lstdc++"
+         # Only macOS release archives ship the .pc with required system frameworks.
+         extra_link_args.extend(get_static_link_args())
+     elif system in ("FreeBSD", "OpenBSD", "Linux") or is_android:
